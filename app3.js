@@ -3,8 +3,9 @@
 import inquirer from 'inquirer';
 
 // Variables
-// let clock1 = setInterval(depleteHealth, 500); //pet health decrement speed
-let petHealth = 100;
+let petHappy = 100;
+let petClean = 100;
+let petHunger = 100;
 
 // Classes & Subclasses
 
@@ -19,7 +20,7 @@ const questions = [
         type: 'list',
         name: 'getType',
         message: "Choose the type of pet that you would like",
-        choices: ['Alien Dog', 'Alien Cat', 'English Snow Elf'],
+        choices: ['Hamster', 'Dog', 'Cat'],
 // choices "array" within the inquirer questions rather than an external array, I don't know how to use an external array/list with inquirer
     },
     {
@@ -36,27 +37,25 @@ let playersPet = new cyberPet(response.getName)
 
 console.log(`You have chosen ${response.getType}`);
 console.log(`You have named your pet ${response.getName}`);
-console.log(`${response.getName} has ${petHealth} health points`)
+// console.log(`${response.getName} has ${petHealth} health points`)
 
 // Functions
 
-function printProgress(){
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(`${petHealth} + '%'`);
-}
 
-let clock1 = setInterval(depleteHealth, 500); //pet health decrement speed
+let clock1 = setInterval(depleteHappy, 500); //pet health decrement speed
+let clock2 = setInterval(depleteClean, 600); //pet health decrement speed
+let clock3 = setInterval(depleteHunger, 700); //pet health decrement speed
 
-function depleteHealth(){
-    if(petHealth == 0){
+
+function depleteHappy(){
+    if(petHappy == 0){
     clearInterval(clock1);
-    console.log("Your pet needs something");
+    console.log("Your pet needs play");
     gameovercheck();
     }
     else{
-    petHealth--;
-    printProgress();
+    petHappy--;
+    printRealtimeStats();
     // console.log(`${petHealth}`);
 
     // console.log(.value = petHunger);
@@ -64,7 +63,37 @@ function depleteHealth(){
     }
 }
 
+function depleteClean(){
+    if(petClean == 0){
+    clearInterval(clock2);
+    console.log("Your pet needs cleaning");
+    gameovercheck();
+    }
+    else{
+    petClean--;
+    printRealtimeStats();
+    // console.log(`${petHealth}`);
 
+    // console.log(.value = petHunger);
+
+    }
+}
+
+function depleteHunger(){
+    if(petHunger == 0){
+    clearInterval(clock3);
+    console.log("Your pet needs feeding");
+    gameovercheck();
+    }
+    else{
+    petHunger--;
+    printRealtimeStats();
+    // console.log(`${petHealth}`);
+
+    // console.log(.value = petHunger);
+
+    }
+}
 
 function gameovercheck(){
     if(petHealth==0&&gameover==0){
@@ -76,6 +105,13 @@ function gameovercheck(){
         console.log("Something");
     }
 }
+
+function printRealtimeStats(){
+    process.stdout.clearLine();
+    process.stdout.cursorTo(0);
+    process.stdout.write(`Pet stats: Happy: ${petHappy}% Clean: ${petClean}% Hunger: ${petHunger}%`);
+}
+
 
 // const response = await inquirer.prompt(questionsPetInfo)
 // let petType = new cyberPet(response.getType)
