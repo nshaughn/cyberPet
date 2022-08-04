@@ -1,17 +1,41 @@
-// todo: doing now: Player can add health with 2 actions: play and feed ()
-
+// todo: doing now: classes & subclasses
 import inquirer from 'inquirer';
 
 // Variables
 let petHappy = 100;
 let petClean = 100;
 let petHunger = 100;
-// Classes & Subclasses
 
+
+// 0 = hates [subtract 10 points], 
+// 1 = likes [add 10 points], 
+// 2 = likes a lot[add 20 points]
+// 3 = no stats modified
+
+// main Class
 class cyberPet {
-    constructor (type) {
-    this.type = type
+    constructor (name) {
+    this.name = name
+    this.happy = 100
+    this.clean = 100
+    this.hunger = 100
 }
+}
+
+// Subclass
+class Hamster extends cyberPet {
+    constructor(name) {
+        this.name = name
+        this.eatLettuce = 0
+        this.eatMeat = 0
+        this.eatDry = 1
+        this.playBone = 0
+        this.playBall = 0
+        this.playWool = 3
+        this.playCleans = 0
+        this.cleanPoints = 1
+        this.cleanHappyPoints = 1
+}   
 }
 
 const questions = [
@@ -31,12 +55,13 @@ const questions = [
 ]
 
 const response = await inquirer.prompt(questions)
-let playersPet = new cyberPet(response.getName)
+// let playersPet = new cyberPet(response.getName)
 // creating new object of cyberPet class with the name response of the questions.
 
+// let playerPetChoice = ${response.getType} // create var holding the player chosen subclass (animal type)
+// const theCyberPet = new playerPetChoice; // spawns the player chosen subclass (animal type)
 console.log(`You have chosen ${response.getType}`);
 console.log(`You have named your pet ${response.getName}`);
-// console.log(`${response.getName} has ${petHealth} health points`)
 
 // Functions
 
@@ -54,10 +79,6 @@ function depleteHappy(){
     else{
     petHappy--;
     printRealtimeStats();
-    // console.log(`${petHealth}`);
-
-    // console.log(.value = petHunger);
-
     }
 }
 
@@ -70,10 +91,6 @@ function depleteClean(){
     else{
     petClean--;
     printRealtimeStats();
-    // console.log(`${petHealth}`);
-
-    // console.log(.value = petHunger);
-
     }
 }
 
@@ -86,10 +103,6 @@ function depleteHunger(){
     else{
     petHunger--;
     printRealtimeStats();
-    // console.log(`${petHealth}`);
-
-    // console.log(.value = petHunger);
-
     }
 }
 
@@ -142,13 +155,6 @@ function printRealtimeStats(){
     process.stdout.cursorTo(0);
     process.stdout.write(`${response.getName} stats: Happy: ${petHappy}% Clean: ${petClean}% Hunger: ${petHunger}%`);
 }
-
-
-// const response = await inquirer.prompt(questionsPetInfo)
-// let petType = new cyberPet(response.getType)
-
-// const response = await inquirer.prompt(questionsPetName)
-// let petName = new cyberPet(response.getName);
 
 const questions2 = [
     {

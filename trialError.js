@@ -1,5 +1,5 @@
 // todo: doing now: Player can add health with 2 actions: play and feed ()
-
+//trying to a way to loop feed play etc
 import inquirer from 'inquirer';
 
 // Variables
@@ -161,24 +161,73 @@ const questions2 = [
 ]
 
 
-inquirer
-.prompt([
-{
-    type:'list',
-    name: 'getAction',
-    message: "What's your chosen action?",
-    choices: ['Play', 'Feed', 'Clean'],
+// inquirer
+// .prompt([
+// {
+//     type:'list',
+//     name: 'getAction',
+//     message: "What's your chosen action?",
+//     choices: ['Play', 'Feed', 'Clean'],
 
-},
-])
-.then((answers) => {
-    console.log(`Your chosen action is ${answers.getAction}`);
-    if(`${answers.getAction}` === 'Feed') {
+// },
+// ])
+// .then((answers) => {
+//     console.log(`Your chosen action is ${answers.getAction}`);
+//     if(`${answers.getAction}` === 'Feed') {
+//         addHungerPoints();
+//     } 
+//     else if(`${answers.getAction}` === 'Clean') {
+//         addCleanPoints();    }   
+//     else if(`${answers.getAction}` === 'Play') {
+//         addHappyPoints();
+//     }   
+// });
+
+const actions = async () => {
+    const doing = await inquirer.prompt([
+        {
+            type:'list',
+            name: 'getAction',
+            message: "What's your chosen action?",
+            choices: ['Play', 'Feed', 'Clean', new inquirer.Separator()],  
+        }
+    ])
+    .then((answers) => {
+    if(answers.getAction === 'Feed') {
         addHungerPoints();
     } 
-    else if(`${answers.getAction}` === 'Clean') {
+    else if(answers.getAction === 'Clean') {
         addCleanPoints();    }   
-    else if(`${answers.getAction}` === 'Play') {
+    else if(answers.getAction === 'Play') {
         addHappyPoints();
-    }   
-});
+    } 
+    actions()
+})
+}  
+actions()
+    
+    
+
+   
+
+// inquirer
+// .prompt([
+// {
+//     type:'list',
+//     name: 'getAction',
+//     message: "What's your chosen action?",
+//     choices: ['Play', 'Feed', 'Clean'],
+
+// },
+// ])
+// .then((answers) => {
+//     console.log(`Your chosen action is ${answers.getAction}`);
+//     if(`${answers.getAction}` === 'Feed') {
+//         addHungerPoints();
+//     } 
+//     else if(`${answers.getAction}` === 'Clean') {
+//         addCleanPoints();    }   
+//     else if(`${answers.getAction}` === 'Play') {
+//         addHappyPoints();
+//     }   
+// });
