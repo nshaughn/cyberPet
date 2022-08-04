@@ -1,6 +1,7 @@
 // todo: doing now: Player can add health with 2 actions: play and feed ()
 
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 
 // Variables
 let clock1 = setInterval(depleteHappy, 500); //pet health decrement speed
