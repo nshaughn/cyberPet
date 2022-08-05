@@ -1,5 +1,6 @@
 // todo: doing now: classes & subclasses
 import inquirer from 'inquirer';
+import questions from './happy.js';
 import chalk from 'chalk';
 
 // Variables
@@ -105,28 +106,28 @@ class Dog extends cyberPet {
     
         eats() {
             this.hunger += 20;
-            console.log(chalk.italic.blue((`You feed ${response.getName} Purina Pro Plan. They are 20 points less hungry.`))); //grey response
+            console.log(chalk.italic.grey((`You feed ${response.getName} Purina Pro Plan. They are 20 points less hungry.`))); //grey response
             return this;
         }
     
 }   
 
 
-const questions = [
-    {
-        type: 'list',
-        name: 'getType',
-        message: (chalk.yellow("Choose the type of pet that you would like")), //yellow
-        choices: ['Hamster', 'Dog', 'Cat'], 
-// choices "array" within the inquirer questions rather than an external array, I don't know how to use an external array/list with inquirer
-    },
-    {
-        type: 'input',
-        name: 'getName', // the name of the var holding the user input data.
-        message: (chalk.yellow("Give your pet a name")) //yellow
-    }
+// const questions = [
+//     {
+//         type: 'list',
+//         name: 'getType',
+//         message: (chalk.yellow("Choose the type of pet that you would like")), //yellow
+//         choices: ['Hamster', 'Dog', 'Cat'], 
+// // choices "array" within the inquirer questions rather than an external array, I don't know how to use an external array/list with inquirer
+//     },
+//     {
+//         type: 'input',
+//         name: 'getName', // the name of the var holding the user input data.
+//         message: (chalk.yellow("Give your pet a name")) //yellow
+//     }
     
-]
+// ]
 
 const response = await inquirer.prompt(questions)
 // let playersPet = new Hamster(response.getName)
