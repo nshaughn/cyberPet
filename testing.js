@@ -3,6 +3,28 @@ import inquirer from 'inquirer';
 import questions from './happy.js';
 import chalk from 'chalk';
 
+
+// const petFaces = [
+//     [`  __    __
+//     o-''))_____\\
+//     "--__/ * * * )
+//     c_c__/-c____/`],
+
+//     [`|\---/|
+//     | o_o |
+//      \_^_/`],
+
+//      [` __         __
+//      /  \.-"""-./  \
+//      \    -   -    /
+//       |   o   o   |
+//       \  .-'''-.  /
+//        '-\__Y__/-'
+//           `---``]
+// ]
+
+
+
 // Variables
 
 let petHappy = 100;
@@ -150,8 +172,7 @@ if(response.getType === 'Hamster'){
          c_c__/-c____/`)
 } else if(response.getType === 'Cat'){
     pet = new Cat(response.getType)
-    console.log(`
-        ^---^       
+    console.log(`        
         'o.o'
        =(_ _)=
           U`)
